@@ -1,15 +1,19 @@
-
+## Introduction
 
 > - **Implementation of `developers portal` using Backstage**
+
+> - **Serves as application repo used in testing app-controller**
 
 
 ## Features
 
 - Visibility into the infrastruture health and status
 
-- Visisbility into running application health and status
+- Visibility into running application health and status
 
-- Ability to securely store secrets in AWS secret manager to be consumed by external secret operator and terraform
+- Retrieve relevant cluster credentials and urls
+
+- Ability to securely create and store secrets in AWS secret manager to be consumed by external secret operator and terraform
 
 
 ## Usage
@@ -19,6 +23,7 @@
    ```sh
    docker compose -f docker/docker-compose.yaml up
    ```
+
 - Ultimately to be run in the control cluster and exposed via Ingress
 
 ## Bonus

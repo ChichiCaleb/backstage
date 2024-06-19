@@ -1,0 +1,40 @@
+version: '3.8'
+
+volumes:
+ database-data:
+
+services:
+  database:
+    image: postgres
+    volumes:
+     - database-data:/var/lib/postgresql/data/
+    environment:
+       POSTGRES_USER: postgres
+       POSTGRES_PASSWORD: postgres
+       POSTGRES_DB: backstage
+       POSTGRES_HOST: database:5432
+       POSTGRES_PORT: 5432
+  
+
+  backstage:
+    image: "${TESTING_IMAGE}"
+    ports:
+      - "7007:7007"
+      - "3000:3000"
+   
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: backstage
+      POSTGRES_HOST: database:5432
+      POSTGRES_PORT: 5432
+          
+    depends_on:
+      - database
+  
+
+
+      
+      
+      
+         
