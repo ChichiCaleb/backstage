@@ -1,7 +1,7 @@
 version: '3.8'
 
 volumes:
-  database-data:
+  backstage-postgres:
 
 services:
 
@@ -9,12 +9,12 @@ services:
 
     image: postgres
     volumes:
-      - database-data:/var/lib/postgresql/data/
+      - backstage-postgres:/var/lib/postgresql/data/
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: backstage_user
+      POSTGRES_PASSWORD: backstage_password
       POSTGRES_DB: backstage
-      POSTGRES_HOST: database:5432
+      POSTGRES_HOST: database
       POSTGRES_PORT: 5432
           
     healthcheck:
@@ -24,17 +24,17 @@ services:
 
   backstage:
 
-    image: ghcr.io/chichicaleb/backstage:9587466534
+    image: ghcr.io/chichicaleb/backstage-portal:9588787880
 
     ports:
       - "7007:7007"
       - "3000:3000"
 
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: backstage_user
+      POSTGRES_PASSWORD: backstage_password
       POSTGRES_DB: backstage
-      POSTGRES_HOST: database:5432
+      POSTGRES_HOST: database
       POSTGRES_PORT: 5432
           
 
